@@ -1,13 +1,7 @@
-                        hackathonF23-artix
-==============================
-
-Reproducing BiRT Architecture (Bio-inspired replay for transformers in Continual Learning)
+### Replication Study on BiRT Architecture (Bio-inspired replay for transformers in Continual Learning)
 
 Project Organization
 ------------
-
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
     |   |__ViT_CiFAR10_data <- CiFAR10 dataset
@@ -24,15 +18,6 @@ Project Organization
     |       |__model_g <- model_f_s weights for CiFAR100
     |       |__model_f_s <- model_f_s weights for CiFAR100
     |       |__model_f_w <- model_f_w weights for CiFAR100 
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
     │
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
@@ -60,19 +45,27 @@ Project Organization
 
 --------
 
-This code implements BiRT architecture for continual learning. 
-The paper was implemented using V100 GPUs with 32GB GPU RAM This implementation was trained and tested on CiFAR 10 and CiFAR 100.
-The python environment used is Python 3. 
-To run this implementation, run src.models.train first, for training the model for each tasks, run src.models.train_finetune_balanced_dataset, to fine tune the model on after training on all tasks, and to test the model run src.models.test 
+This repository implements the BiRT architecture for continual learning, as described in the associated paper. The implementation was developed using V100 GPUs with 32GB of GPU RAM and was trained and tested on the CIFAR-10 and CIFAR-100 datasets.
 
-Therefore the command sequence looks like this. Change the const.py file in src/models according to the experiment you wish to run. See comments in const.py for specific information.
+## Environment
 
-To test the ViT code when split into g() and f(), set FINE_TUNE_SIZE to be size of training dataset i.e 50,000, and fine_tune_epoch to the desired number of epochs in const.py and run src.models.train_finetune_balanced_dataset. The original ViT code can be tested from https://github.com/tintn/vision-transformer-from-scratch/blob/main/vision_transformers.ipynb by changing the dataset accordingly.
+- **Python version:** Python 3
+- **Libraries:** Listed in `requirements.txt`
 
+## Running the Implementation
 
-python -m src.models.train 
+To run this implementation, follow the commands for each task as outlined below. Note that you may need to modify the `const.py` file in `src/models` according to the specific experiment you wish to run. Refer to the comments in `const.py` for detailed instructions.
+
+### Training and Testing
+
+```bash
+python -m src.models.train
 python -m src.models.test
 python -m src.models.train_finetune_balanced_dataset
 python -m src.models.test
+```
+### Testing the ViT Model
+
+To test the Vision Transformer (ViT) model when decomposed into g() and f() models, execute the Vit_fg.ipynb notebook. To test the original ViT model, run the ViT.ipynb notebook.
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
