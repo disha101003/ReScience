@@ -54,7 +54,8 @@ This repository implements the BiRT architecture for continual learning, as desc
 
 ## Running the Implementation
 
-To run this implementation, follow the commands for each task as outlined below. Note that you may need to modify the `const.py` file in `src/models` according to the specific experiment you wish to run. Refer to the comments in `const.py` for detailed instructions.
+To run this implementation, follow the commands for each task as outlined below. The tasks should be listed sequentially as 0, 1, 2, etc.
+Note that you may need to modify the `const.py` file in `src/models` according to the specific experiment you wish to run. Refer to the comments in `const.py` for detailed instructions.
 
 ### Training and Testing
 
