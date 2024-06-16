@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 from tqdm.notebook import tqdm, trange
-import dagshub
-import mlflow
-from mlflow import MlflowClient
+
 from src import const
 from src.dataset import train_data
 import torch.nn.functional as F
@@ -15,23 +13,7 @@ import os
 import pickle
 
 from src.models.arch import get_models, D_buffer
-def mlflow_log_params():
 
-    mlflow.log_param("DATASET", const.DATASET)
-    mlflow.log_param("SUBSET", const.SUBSET)
-    mlflow.log_param("NUM_SUBSET_IMAGES", const.NUM_SUBSET_IMAGES)
-    mlflow.log_param("task_num", const.task_num)
-    mlflow.log_param("tasks", const.tasks)
-    mlflow.log_param("epochs", const.epochs)
-    mlflow.log_param("base_lr", const.base_lr)
-    mlflow.log_param("weight_decay", const.weight_decay)
-    mlflow.log_param("batch_size", const.batch_size)
-    # logging in all hyperparameters used for BiRT specific training using mlflow
-    for key, value in const.config.items():
-        mlflow.log_param(key, value)
-    mlflow.log_param('optimizer','Adam')
-
-    return
 
 def train_task(task_index, trainloader, sem_mem, model_g, model_f_w, model_f_s, criterion, optimizer):
     c = 0
@@ -114,7 +96,6 @@ def train_task(task_index, trainloader, sem_mem, model_g, model_f_w, model_f_s, 
 
         # Printing average loss per epoch
         print(f"Epoch {epoch + 1}/{const.epochs} loss: {train_loss:.2f}")
-        # mlflow.log_metric(f"task{task_index}_epoch_loss", train_loss, step = epoch) 
 
     # copying f_w() paramerters to f_s() for first task
     if task_index == 0:
@@ -124,7 +105,6 @@ def train_task(task_index, trainloader, sem_mem, model_g, model_f_w, model_f_s, 
 
     end = int(time.time()/60) # task training end time
     task_train_time = end - start
-    # mlflow.log_metric(f"Time taken to complete training task {task_index}",task_train_time )
     print(f"Task {task_index} done in {task_train_time} mins")
     start = int(time.time()/60)
 
@@ -136,13 +116,11 @@ def train_task(task_index, trainloader, sem_mem, model_g, model_f_w, model_f_s, 
     torch.save(model_g.state_dict(),const.MODEL_DIR/'model_g' )
     torch.save(model_f_w.state_dict(),const.MODEL_DIR/'model_f_w' )
     torch.save(model_f_s.state_dict(),const.MODEL_DIR/'model_f_s' )
-    # mlflow.log_metric(f"Time taken to update memory after task {task_index}",mem_update_time )
     return sem_mem
         
 
 if __name__ == '__main__':
-    # dagshub.init("hackathonF23-artix", "ML-Purdue" )
-    # mlflow.set_tracking_uri("https://dagshub.com/ML-Purdue/hackathonF23-artix.mlflow")
+  
     model_g, model_f_w, model_f_s = get_models()
 
     model_g_path = os.path.join(const.MODEL_DIR/'model_g')
@@ -163,12 +141,8 @@ if __name__ == '__main__':
     task_list = train_data()
     optimizer = optim.Adam(list(model_g.parameters()) + list(model_f_w.parameters()), lr=const.base_lr, weight_decay=const.weight_decay)
     criterion = nn.CrossEntropyLoss()
-    # while mlflow.active_run() is not None:
-    #     mlflow.end_run()
-    # if mlflow.active_run() is None:
-    #     mlflow.start_run() 
+
   
-    # mlflow_log_params()
     sem_mem = train_task(const.task_num, task_list[const.task_num], sem_mem, model_g, model_f_w, model_f_s,criterion, optimizer )
 
     torch.save(sem_mem, memory_file_path)
@@ -176,7 +150,4 @@ if __name__ == '__main__':
     torch.save(model_g.state_dict(),const.MODEL_DIR/'model_g' )
     torch.save(model_f_w.state_dict(),const.MODEL_DIR/'model_f_w' )
     torch.save(model_f_s.state_dict(),const.MODEL_DIR/'model_f_s' )
-    # mlflow.pytorch.log_model(model_g, "g()", registered_model_name="g()")
-    # mlflow.pytorch.log_model(model_f_s, "f_s()", registered_model_name="f_s()")
-    # mlflow.pytorch.log_model(model_f_w, "f_w()", registered_model_name= "f_w()")
-    # mlflow.end_run()
+ 
