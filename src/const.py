@@ -63,6 +63,6 @@ std = 1                 # hyperparameter for normal distribution used in creatin
 mean = 0                # hyperparameter for normal distribution used in creating noise to be appliedsemntic memory logits
 sem_mem_length = 500
 
-task_num = 1
+task_num = 0
 
-device = 'cuda:0' if torch.cuda.is_available() else 'cpu'     # choosong device
+device = 'cuda:0' if torch.cuda.is_available() else 'cpu'     # choosing device
