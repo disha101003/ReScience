@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from tqdm.notebook import tqdm, trange
+from tqdm import tqdm, trange
 
 from src import const
 from src.dataset import train_data
@@ -19,11 +19,11 @@ def train_task(task_index, trainloader, sem_mem, model_g, model_f_w, model_f_s, 
     c = 0
     # training loop of BiRT
     start = int(time.time()/60) # task training start time
-    for epoch in trange(const.epochs, desc="Training_Epochs"):
+    for epoch in range(const.epochs):
         train_loss = 0.0
         task_sem_mem_list = []
 
-        for batch_idx, batch in enumerate(tqdm((trainloader), desc=f"Epoch {epoch + 1} in training", leave=False)):
+        for batch_idx, batch in enumerate(tqdm((trainloader), desc=f"Epoch {epoch + 1} / {const.epochs} in training", leave=False)):
             x, y = batch
             x, y = x.to(const.device), y.to(const.device)
             y_hat_g,_ = model_g(x,c)                      # get output from g()
