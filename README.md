@@ -6,9 +6,7 @@ Project Organization
     ├── data
     |   |__ViT_CiFAR10_data <- CiFAR10 dataset
     |   |__VIT_CiFAR100_data <- CiFAR100 dataset
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
+    │    │
     ├── models             <- Trained and serialized models, model predictions, or model summaries
     |   |__models_CiFAR10 <- model_g, model_f_w, model_f_s weights for CiFAR10
     |   |   |__model_g <- model_f_s weights for CiFAR100
@@ -22,7 +20,6 @@ Project Organization
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
     │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
     ├── src                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes src a Python module
     │   │
@@ -33,15 +30,12 @@ Project Organization
     │   ├── models         <- Scripts to train models and then use trained models to make
     │   │   │                 predictions
     │   │   ├── arch.py     <-  architecture code of BiRT
-    │   │   └── train.py    <- training code for BiRT for all tasks
+    │   │   └── train_task.py    <- training code for BiRT for each tasks
     │   │   └── train_finetune_balanced_dataset.py    <- finetuning model on balanced dataset
     |   |   |__ test.py       <- testing code for architecture
     │   │
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-
 
 --------
 
@@ -49,8 +43,10 @@ This repository implements the BiRT architecture for continual learning, as desc
 
 ## Environment
 
-- **Python version:** Python 3
+- **Python Version:** Python 3.11
 - **Libraries:** Listed in `requirements.txt`
+- **GCC Version:** `gcc` (GCC) 4.8.5, Red Hat 4.8.5-44 (2015-06-23)
+- **GPU:** NVIDIA V100, Node 1
 
 ## Running the Implementation
 
@@ -60,7 +56,7 @@ Note that you may need to modify the `const.py` file in `src/models` according t
 ### Training and Testing
 
 ```bash
-python -m src.models.train
+python -m src.models.train_task
 python -m src.models.test
 python -m src.models.train_finetune_balanced_dataset
 python -m src.models.test
