@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from tqdm.notebook import tqdm, trange
+from tqdm import tqdm, trange
 
 from src import const
 from src.dataset import test_data
@@ -43,12 +43,12 @@ if __name__ == '__main__':
 
     testloader = test_data()
     criterion = nn.CrossEntropyLoss()
-    model_g, model_f_w, model_f_s = get_models()
     if const.PRETRAINED == True:
-        model_g.load_state_dict(torch.load(const.model_g_path))
-        model_f_w.load_state_dict(torch.load(const.model_fw_path))
-        model_f_s.load_state_dict(torch.load(const.model_fs_path))
+        model_g = torch.load(const.model_g_path, weights_only = False)
+        model_f_w = torch.load(const.model_fw_path, weights_only = False)
+        model_f_s = torch.load(const.model_fs_path, weights_only = False)
     else:
+        model_g, model_f_w, model_f_s = get_models()
         model_g.load_state_dict(torch.load(const.MODEL_DIR/'model_g'))
         model_f_w.load_state_dict(torch.load(const.MODEL_DIR/'model_f_w'))
         model_f_s.load_state_dict(torch.load(const.MODEL_DIR/'model_f_s'))
