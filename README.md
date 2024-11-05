@@ -64,6 +64,43 @@ python -m src.models.test
 python -m src.models.train_finetune_balanced_dataset
 python -m src.models.test
 ```
+
+# Testing with Pretrained Models
+
+All pretrained models are stored in the `models/pretrained_models_$DATASET$` directory in `.pth` format. Make sure PRETRAINED is set to True in const.py. Specify the file path for each fs, fw, g model for the particular task in const.py. See const.py for further detailed instructions.
+
+## Model Naming Convention
+
+Each pretrained model follows a specific naming convention to indicate the dataset, task type, task number, and model architecture:
+
+\[
+\text{{(dataset)(tasktype)(num)\_(modeltype).pth}}
+\]
+
+### Where:
+- **dataset**: Indicates the dataset used, either `cifar10` or `cifar100`.
+- **tasktype**: Describes the model’s state:
+  - `ft`: Model after fine-tuning.
+  - `t`: Model after training for the specific task.
+- **num**: Refers to the task number.
+- **modeltype**: Specifies the model architecture, which can be:
+  - `fs`, `fw`, or `g`.
+
+### Example
+
+For a CIFAR-10 model fine-tuned for task 1 with model architecture `fs`, the file name would be:
+
+\[
+\text{{cifar10ft1\_fs.pth}}
+\]
+
+## Testing the Pretrained Models
+
+To test a pretrained model, run the following command:
+
+```bash
+python -m src.models.test
+
 ### Testing the ViT Model
 
 To test the Vision Transformer (ViT) model when decomposed into g() and f() models, execute the Vit_fg.ipynb notebook. To test the original ViT model, run the ViT.ipynb notebook. (Tintn. Vision Transformer from Scratch. https://github.com/tintn/vision-transformer-from-scratch.)
