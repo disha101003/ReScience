@@ -66,3 +66,12 @@ sem_mem_length = 500
 task_num = 0
 
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'     # choosing device
+
+# For Testing with  pretrained models only 
+PRETRAINED = True
+# PRETRAINED_BASE_PATH = BASE_DIR/'models'/'pretrained_models_CiFAR10' for CiFAR10
+# PRETRAINED_BASE_PATH = BASE_DIR/'models'/'pretrained_models_CiFAR100'for CiFAR100
+PRETRAINED_BASE_PATH = BASE_DIR/'models'/'pretrained_models_CiFAR100'
+model_fs_path = PRETRAINED_BASE_PATH / 'cifar10t4_fs'
+model_fw_path = PRETRAINED_BASE_PATH / 'cifar10t4_fw'
+model_g_path = PRETRAINED_BASE_PATH / 'cifar10t4_g'

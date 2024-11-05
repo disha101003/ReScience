@@ -13,9 +13,12 @@ Project Organization
     |   |   |__model_f_s <- model_f_s weights for CiFAR100
     |   |   |__model_f_w <- model_f_w weights for CiFAR100 
     |   |__models_CiFAR100  <- model_g, model_f_w, model_f_s weights for CiFAR100
-    |       |__model_g <- model_f_s weights for CiFAR100
-    |       |__model_f_s <- model_f_s weights for CiFAR100
-    |       |__model_f_w <- model_f_w weights for CiFAR100 
+    |   |   |__model_g <- model_f_s weights for CiFAR100
+    |   |   |__model_f_s <- model_f_s weights for CiFAR100
+    |   |   |__model_f_w <- model_f_w weights for CiFAR100 
+    |   |__pretrained_models_CiFAR10 <- pretrained models for each step for CiFAR10
+    |   |__pretrained_models_CiFAR100 <- pretrained models for each step for CiFAR100
+    |
     │
     ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`
