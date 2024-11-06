@@ -88,7 +88,7 @@ The file naming pattern is as follows: `(dataset)(tasktype)(num)_(modeltype).pth
 
 ### Example
 
-For a CIFAR-10 model fine-tuned for task 1 with model architecture `fs`, the file name would be:
+For a `CIFAR-10` model fine-tuned for `task 1` with model architecture `fs`, the file name would be:
 
 `cifar10ft1_fs.pth`
 
