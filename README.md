@@ -100,7 +100,7 @@ To test a pretrained model, run the following command:
 ```bash
 python -m src.models.test
 ```
-### Testing the ViT Model
+# Testing the ViT Model
 
 To test the Vision Transformer (ViT) model when decomposed into g() and f() models, execute the Vit_fg.ipynb notebook. To test the original ViT model, run the ViT.ipynb notebook. (Tintn. Vision Transformer from Scratch. https://github.com/tintn/vision-transformer-from-scratch.)
 
