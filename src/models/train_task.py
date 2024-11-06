@@ -12,6 +12,29 @@ import os
 
 from src.models.arch import get_models, D_buffer
 
+"""
+    Function to train the model for each task
+
+    Args:
+        task_index - the tasn number that is to be trained
+        sem_mem - episodic memory that stores latent representations
+        model_g - the first part of the ViT model consisting of the
+                embedding blocks and first two encoder blocks
+        model_f_w - the second part of the ViT model consisting of
+                the consisting of all the other encoder
+                blocks and MLP head. This model is part of the working
+                model that continously gets trained on the training data
+        model_f_s - the second part of the ViT model consisting of
+                the semantic model consisting of all the other
+                encoder blocks. The stable counterpart of fw which is
+                updated periodically with weights from fw
+        criterion - cross entropy loss function
+        optimizer - adam optimizer
+
+    Returns:
+        sem_mem - updated episodic memory
+"""
+
 
 def train_task(
         task_index,

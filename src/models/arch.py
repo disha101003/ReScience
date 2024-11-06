@@ -436,7 +436,10 @@ class ViTForClassfication(nn.Module):
 
 class ViTForClassfication_g(nn.Module):
     """
-    The ViT model for classification.
+    This model consists of the embedding layer and the first two encoder blocks
+    of the encoder stack. It takes an input with dimensions
+    batch x channel x height x width, and outputs features
+    with dimensions batch x (patches + 1) x hidden_size.
     """
 
     def __init__(self, config):
@@ -495,7 +498,10 @@ class ViTForClassfication_g(nn.Module):
 
 class ViTForClassfication_f(nn.Module):
     """
-    The ViT model for classification.
+    This model includes the remaining encoder blocks and the MLP
+    head. It takes inputs with dimensions batch x (patches + 1)
+    x latent_size and produce an output of dimensions
+    batch x 1, representing the final classification prediction.
     """
 
     def __init__(self, config):
@@ -557,7 +563,7 @@ class ViTForClassfication_f(nn.Module):
 def select_exemplars(X, m):
     """
         Incremental exemplar selection algorithm.
-        Parameters:
+        Args:
         - X: Set of input images as PyTorch tensors.
         - m: Target number of exemplars.
         Returns:
@@ -586,21 +592,37 @@ def select_exemplars(X, m):
     # Convert the list of tensors to a single tensor before returning
     return P
 
+
 # defining class for episodic memory
-
-
 class D_buffer:
+    """
+        Args:
+            max_length - max number of images stored in the buffer
+            tasks - the number of maximum tasks whose representations can be
+            stored in the buffer
+            num_classes - the total number of classes in the dataset
+            batch_size - batch size of the training dataset
+    """
+
     def __init__(self, max_length, batch_size, num_classes, tasks):
         self.max_length = max_length
         self.buffer_images = []
         self.buffer_labels = []
-        self.current_index = 0
         self.num_elements = 0
         self.batch_size = batch_size
         self.num_classes = num_classes
         self.tasks = tasks
+        # list to store images based on class
         self.class_seperate_list = {i: [] for i in range(num_classes)}
+        # list to store images based on icarl ranking for each class
         self.class_icarl_list = {}
+
+    """
+        Args:
+            task_sem_mem_list - images from the current task
+            that need to be stored in the memory
+            task_num - current task number
+    """
 
     def update(self, task_sem_mem_list, task_num):
         """
@@ -650,6 +672,11 @@ class D_buffer:
         self.num_elements = len(self.buffer_images)
         return
 
+    """
+        Function which returns a batch of representations
+        choosen at random
+    """
+
     def get_batch(self):
         batch_images = []
         batch_labels = []
@@ -661,9 +688,17 @@ class D_buffer:
         labels = torch.stack(batch_labels, dim=0)
         return images, labels
 
+    """
+        Function to print all the images in the episodic memory
+    """
+
     def print(self):
         for item in self.buffer_images:
             print(item)
+    """
+        Function which checks if the episodic memory (buffer)
+        is empty
+    """
 
     def is_empty(self):
         return (len(self.buffer_images) == 0)

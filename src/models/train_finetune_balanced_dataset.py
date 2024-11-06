@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from tqdm import tqdm, trange
+from tqdm import tqdm
 
 from src import const
 from src.dataset import balanced_fine_tune_data
@@ -9,8 +9,25 @@ from torch import nn
 import torch.optim as optim
 from src.models.arch import get_models
 
+"""
+    Function to fine tune the model on a small balanced dataset
 
-# Balanced train loop
+    Args:
+        model_g - the first part of the ViT model consisting of the
+                embedding blocks and first two encoder blocks
+        model_f_w - the second part of the ViT model consisting of
+                the consisting of all the other encoder
+                blocks and MLP head. This model is part of the working
+                model that continously gets trained on the training data
+        criterion - cross entropy loss function
+        optimizer - adam optimizer
+        scheduler - the learning rate scheduler,
+            usually a linear scheduler for gradual adjustment of the
+            learning rate.
+        balanced_loader - diverse training setconsisting of all classes
+"""
+
+
 def train_balanced(
         criterion,
         optimizer,

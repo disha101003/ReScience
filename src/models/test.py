@@ -7,10 +7,22 @@ import torch
 from torch import nn
 
 from src.models.arch import get_models
-# Test loop
+
+"""
+Evaluates the model on a test dataset and computes the loss and accuracy.
+
+Args:
+    criterion: Cross-entropy loss function
+    testloader: DataLoader for the test dataset.
+    model_g: The first part of the ViT model, which includes
+        the embedding layers and the first two encoder blocks.
+    model_f_w: The second part of the ViT model, which includes
+        the remaining encoder blocks and the MLP head.
+
+"""
 
 
-def test(criterion, testloader, model_g, model_f_w, model_f_s):
+def test(criterion, testloader, model_g, model_f_w):
     c = 0
     with torch.no_grad():
         correct, total = 0, 0
@@ -42,10 +54,8 @@ if __name__ == '__main__':
     if const.PRETRAINED:
         model_g = torch.load(const.model_g_path, weights_only=False)
         model_f_w = torch.load(const.model_fw_path, weights_only=False)
-        model_f_s = torch.load(const.model_fs_path, weights_only=False)
     else:
         model_g, model_f_w, model_f_s = get_models()
         model_g.load_state_dict(torch.load(const.MODEL_DIR / 'model_g'))
         model_f_w.load_state_dict(torch.load(const.MODEL_DIR / 'model_f_w'))
-        model_f_s.load_state_dict(torch.load(const.MODEL_DIR / 'model_f_s'))
-    test(criterion, testloader, model_g, model_f_w, model_f_s)
+    test(criterion, testloader, model_g, model_f_w)
