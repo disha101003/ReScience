@@ -75,7 +75,7 @@ All pretrained models are stored in the `models/pretrained_models_$DATASET$` dir
 
 Each pretrained model follows a specific naming convention to indicate the dataset, task type, task number, and model architecture:
 
-The file naming pattern is as follows: (dataset)(tasktype)(num)_(modeltype).pth
+The file naming pattern is as follows: `(dataset)(tasktype)(num)_(modeltype).pth`
 
 ### Where:
 - **dataset**: Indicates the dataset used, either `cifar10` or `cifar100`.
@@ -90,7 +90,7 @@ The file naming pattern is as follows: (dataset)(tasktype)(num)_(modeltype).pth
 
 For a CIFAR-10 model fine-tuned for task 1 with model architecture `fs`, the file name would be:
 
-cifar10ft1_fs.pth
+`cifar10ft1_fs.pth`
 
 
 ## Testing the Pretrained Models
