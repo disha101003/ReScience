@@ -47,7 +47,7 @@ weight_decay = 1e-6
 num_classes = 100  # num_classes of CIFAR100 / CIFAR10
 accum_iter = 4
 tasks = 5  # num of tasks
-epochs = 5 # num of epochs for training 
+epochs = 200 # num of epochs for training 
 batch_size = 32
 fine_tune_epoch = 20
 # hyperparameters specific to BiRT training
