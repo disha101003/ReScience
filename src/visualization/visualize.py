@@ -10,10 +10,11 @@ import numpy as np
 
 
 def imshow2(img):
-  img = img / 5 + 0.5     # unnormalize
-  npimg = img.numpy()
-  plt.imshow(np.transpose(npimg, (1, 2, 0)))
-  plt.show()
+    img = img / 5 + 0.5     # unnormalize
+    npimg = img.numpy()
+    plt.imshow(np.transpose(npimg, (1, 2, 0)))
+    plt.show()
+
 
 def imshow(img):
     img = img / 2 + 0.5     # unnormalize
@@ -21,12 +22,13 @@ def imshow(img):
     plt.imshow(np.transpose(npimg, (1, 2, 0)))
     plt.show()
 
+
 if __name__ == '__main__':
     task_list = train_data()
     # plotting 2 batches of the first task
     dataiter = iter(task_list[0])
     images1, labels1 = next(dataiter)
-    images2,labels2 = next(dataiter)
+    images2, labels2 = next(dataiter)
     print(images1.size())
     print(labels1.size())
 

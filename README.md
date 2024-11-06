@@ -1,4 +1,4 @@
-### Replication Study on BiRT Architecture (Bio-inspired replay for transformers in Continual Learning)
+# Replication Study on BiRT Architecture (Bio-inspired replay for transformers in Continual Learning)
 
 Project Organization
 ------------
@@ -44,19 +44,21 @@ Project Organization
 
 This repository implements the BiRT architecture for continual learning, as described in the associated paper. The implementation was developed using V100 GPUs with 32GB of GPU RAM and was trained and tested on the CIFAR-10 and CIFAR-100 datasets.
 
-## Environment
+# Environment
 
 - **Python Version:** Python 3.11
 - **Libraries:** Listed in `requirements.txt`
 - **GCC Version:** `gcc` (GCC) 4.8.5, Red Hat 4.8.5-44 (2015-06-23)
 - **GPU:** NVIDIA V100, Node 1
 
-## Running the Implementation
+# Running the Implementation
 
-To run this implementation, follow the commands for each task as outlined below. The tasks should be listed sequentially as 0, 1, 2, etc.
-Note that you may need to modify the `const.py` file in `src/models` according to the specific experiment you wish to run. Refer to the comments in `const.py` for detailed instructions.
+To run this implementation, follow the commands for each task as outlined below. The tasks should be trained sequentially in the order 0, 1, 2, etc. 
+Note that you may need to modify the `const.py` file in `src/models` according to the specific experiment you wish to run and the specific task you need to train.
+Also make sure PRETRAINED is set to False in const.py before running the test scripts.
+Refer to the comments in `const.py` for detailed instructions.
 
-### Training and Testing
+## Training and Testing
 
 ```bash
 python -m src.models.train_task
