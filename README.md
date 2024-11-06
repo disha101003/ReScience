@@ -75,9 +75,7 @@ All pretrained models are stored in the `models/pretrained_models_$DATASET$` dir
 
 Each pretrained model follows a specific naming convention to indicate the dataset, task type, task number, and model architecture:
 
-\[
-\text{{(dataset)(tasktype)(num)\_(modeltype).pth}}
-\]
+The file naming pattern is as follows: (dataset)(tasktype)(num)_(modeltype).pth
 
 ### Where:
 - **dataset**: Indicates the dataset used, either `cifar10` or `cifar100`.
@@ -92,9 +90,8 @@ Each pretrained model follows a specific naming convention to indicate the datas
 
 For a CIFAR-10 model fine-tuned for task 1 with model architecture `fs`, the file name would be:
 
-\[
-\text{{cifar10ft1\_fs.pth}}
-\]
+cifar10ft1_fs.pth
+
 
 ## Testing the Pretrained Models
 
@@ -102,7 +99,7 @@ To test a pretrained model, run the following command:
 
 ```bash
 python -m src.models.test
-
+```
 ### Testing the ViT Model
 
 To test the Vision Transformer (ViT) model when decomposed into g() and f() models, execute the Vit_fg.ipynb notebook. To test the original ViT model, run the ViT.ipynb notebook. (Tintn. Vision Transformer from Scratch. https://github.com/tintn/vision-transformer-from-scratch.)
