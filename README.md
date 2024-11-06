@@ -55,7 +55,7 @@ This repository implements the BiRT architecture for continual learning, as desc
 
 To run this implementation, follow the commands for each task as outlined below. The tasks should be trained sequentially in the order 0, 1, 2, etc. 
 Note that you may need to modify the `const.py` file in `src/models` according to the specific experiment you wish to run and the specific task you need to train.
-Also make sure PRETRAINED is set to False in const.py before running the test scripts.
+Also make sure `PRETRAINED` is set to `False` in `const.py` before running the test scripts.
 Refer to the comments in `const.py` for detailed instructions.
 
 ## Training and Testing
@@ -69,7 +69,7 @@ python -m src.models.test
 
 # Testing with Pretrained Models
 
-All pretrained models are stored in the `models/pretrained_models_$DATASET$` directory in `.pth` format. Make sure PRETRAINED is set to True in const.py. Specify the file path for each fs, fw, g model for the particular task in const.py. See const.py for further detailed instructions.
+All pretrained models are stored in the `models/pretrained_models_$DATASET$` directory in `.pth` format. Make sure `PRETRAINED` is set to `True` in `const.py`. Specify the file path for each `fs`, `fw`, `g` model for the particular task in `const.py`. See const.py for further detailed instructions.
 
 ## Model Naming Convention
 
