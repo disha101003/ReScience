@@ -1,6 +1,6 @@
 # Replication Study on BiRT Architecture (Bio-inspired replay for transformers in Continual Learning)
 
-# Project Organization
+## Project Organization
 ------------
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
