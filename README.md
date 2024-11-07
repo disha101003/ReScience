@@ -56,9 +56,11 @@ This repository implements the BiRT architecture for continual learning, as desc
 
 To run this implementation, follow the commands for each task as outlined below. The tasks should be trained sequentially in the order 0, 1, 2, etc. 
 Note that you may need to modify the `const.py` file in `src/models` according to the specific experiment you wish to run and the specific task you need to train. Refer to the comments in `const.py` for detailed instructions.
+
 Make the follwing changes in `const.py` for running experiments with CiFAR10 set:
 * `DATASET` = 'CiFAR10'
 * `NUM_CLASSES` = 10
+
 Make the follwing changes in `const.py` for running experiments with CiFAR100 set:
 * `DATASET` = 'CiFAR100'
 * `NUM_CLASSES` = 100
@@ -103,6 +105,7 @@ For a `CIFAR-10` model `fine-tuned` for `task 1` with model architecture `fs`, t
 Make the follwing changes in `const.py` for running tests with CiFAR10 set:
 * `DATASET` = 'CiFAR10'
 * `NUM_CLASSES` = 10
+
 Make the follwing changes in `const.py` for running tests with CiFAR100 set:
 * `DATASET` = 'CiFAR100'
 * `NUM_CLASSES` = 100
