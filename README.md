@@ -75,7 +75,7 @@ python -m src.models.test
 python -m src.models.train_finetune_balanced_dataset
 python -m src.models.test
 ```
-train
+`train_test_task.sh` is a bash script which runs alls these commands.
 # Testing with Pretrained Models
 
 All pretrained models are stored in the `models/pretrained_models_$DATASET$` directory in `.pth` format. Make sure `PRETRAINED` is set to `True` in `const.py`. Specify the file path for each `fs`, `fw`, `g` model for the particular task in `const.py`. See const.py for further detailed instructions.
