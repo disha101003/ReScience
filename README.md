@@ -64,6 +64,7 @@ Make the follwing changes in `const.py` for running experiments with CiFAR10 set
 Make the follwing changes in `const.py` for running experiments with CiFAR100 set:
 * `DATASET` = 'CiFAR100'
 * `NUM_CLASSES` = 100
+
 Make sure to change the `task_num` in `const.py` according to the task that needs to be trained.
 
 ## Training and Testing
@@ -117,7 +118,7 @@ python -m src.models.test --model_fw_path "$model_fw" --model_g_path "$model_g"
 ```
 where `model_fw` and `model_g` are the paths to model_fw and model_g respectively
 
-test_pretrained.sh is a shell script used to test all the CiFAR10 models. Slight modifications can be made to it to test all CiFAR100 models
+`test_pretrained.sh` is a shell script used to test all the `CiFAR10` models. Slight modifications can be made to it to test all `CiFAR100` models
 # Testing the ViT Model
 
 To test the Vision Transformer (ViT) model when decomposed into g() and f() models, execute the Vit_fg.ipynb notebook. To test the original ViT model, run the ViT.ipynb notebook. (Tintn. Vision Transformer from Scratch. https://github.com/tintn/vision-transformer-from-scratch.)
