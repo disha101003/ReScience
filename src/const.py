@@ -73,6 +73,6 @@ std = 1
 mean = 0
 sem_mem_length = 500
 
-task_num = 1
+task_num = 0
 
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'  # choosing device
