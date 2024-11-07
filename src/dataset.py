@@ -22,7 +22,7 @@ def train_data():
                 (0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
     # define path to training dataset
-    if const.DATASET == 'CIFAR10':
+    if const.DATASET == 'CiFAR10':
         train_data = torchvision.datasets.CIFAR10(
             root=const.DATA_TEST_DIR,
             train=True,
@@ -96,7 +96,7 @@ def test_data():
          transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
     # defining path to test data
-    if const.DATASET == 'CIFAR10':
+    if const.DATASET == 'CiFAR10':
         test_data = torchvision.datasets.CIFAR10(
             root=const.DATA_TEST_DIR,
             train=False,
@@ -136,7 +136,7 @@ def balanced_fine_tune_data():
         ])
 
     # define path to training dataset
-    if const.DATASET == 'CIFAR10':
+    if const.DATASET == 'CiFAR10':
         train_data = torchvision.datasets.CIFAR10(
             root=const.DATA_TEST_DIR,
             train=True,

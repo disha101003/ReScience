@@ -51,11 +51,8 @@ if __name__ == '__main__':
 
     testloader = test_data()
     criterion = nn.CrossEntropyLoss()
-    if const.PRETRAINED:
-        model_g = torch.load(const.model_g_path, weights_only=False)
-        model_f_w = torch.load(const.model_fw_path, weights_only=False)
-    else:
-        model_g, model_f_w, model_f_s = get_models()
-        model_g.load_state_dict(torch.load(const.MODEL_DIR / 'model_g'))
-        model_f_w.load_state_dict(torch.load(const.MODEL_DIR / 'model_f_w'))
+ 
+    model_g, model_f_w, model_f_s = get_models()
+    model_g.load_state_dict(torch.load(const.MODEL_DIR / 'model_g'))
+    model_f_w.load_state_dict(torch.load(const.MODEL_DIR / 'model_f_w'))
     test(criterion, testloader, model_g, model_f_w)
