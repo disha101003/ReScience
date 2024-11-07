@@ -35,6 +35,7 @@
     │   │   ├── arch.py     <-  architecture code of BiRT
     │   │   └── train_task.py    <- training code for BiRT for each tasks
     │   │   └── train_finetune_balanced_dataset.py    <- finetuning model on balanced dataset
+    |   |   |__test_pretrained_models.py <- script to test with a pretrained model
     |   |   |__ test.py       <- testing code for architecture
     │   │
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
@@ -54,9 +55,14 @@ This repository implements the BiRT architecture for continual learning, as desc
 # Running the Implementation
 
 To run this implementation, follow the commands for each task as outlined below. The tasks should be trained sequentially in the order 0, 1, 2, etc. 
-Note that you may need to modify the `const.py` file in `src/models` according to the specific experiment you wish to run and the specific task you need to train.
-Also make sure `PRETRAINED` is set to `False` in `const.py` before running the test scripts.
-Refer to the comments in `const.py` for detailed instructions.
+Note that you may need to modify the `const.py` file in `src/models` according to the specific experiment you wish to run and the specific task you need to train. Refer to the comments in `const.py` for detailed instructions.
+Make the follwing changes in `const.py` for running experiments with CiFAR10 set:
+* `DATASET` = 'CiFAR10'
+* `NUM_CLASSES` = 10
+Make the follwing changes in `const.py` for running experiments with CiFAR100 set:
+* `DATASET` = 'CiFAR100'
+* `NUM_CLASSES` = 100
+Make sure to change the `task_num` in `const.py` according to the task that needs to be trained.
 
 ## Training and Testing
 
@@ -66,7 +72,7 @@ python -m src.models.test
 python -m src.models.train_finetune_balanced_dataset
 python -m src.models.test
 ```
-
+train
 # Testing with Pretrained Models
 
 All pretrained models are stored in the `models/pretrained_models_$DATASET$` directory in `.pth` format. Make sure `PRETRAINED` is set to `True` in `const.py`. Specify the file path for each `fs`, `fw`, `g` model for the particular task in `const.py`. See const.py for further detailed instructions.
@@ -94,12 +100,21 @@ For a `CIFAR-10` model `fine-tuned` for `task 1` with model architecture `fs`, t
 
 
 ## Testing the Pretrained Models
+Make the follwing changes in `const.py` for running tests with CiFAR10 set:
+* `DATASET` = 'CiFAR10'
+* `NUM_CLASSES` = 10
+Make the follwing changes in `const.py` for running tests with CiFAR100 set:
+* `DATASET` = 'CiFAR100'
+* `NUM_CLASSES` = 100
 
 To test a pretrained model, run the following command:
 
 ```bash
-python -m src.models.test
+python -m src.models.test --model_fw_path "$model_fw" --model_g_path "$model_g"
 ```
+where `model_fw` and `model_g` are the paths to model_fw and model_g respectively
+
+test_pretrained.sh is a shell script used to test all the CiFAR10 models. Slight modifications can be made to it to test all CiFAR100 models
 # Testing the ViT Model
 
 To test the Vision Transformer (ViT) model when decomposed into g() and f() models, execute the Vit_fg.ipynb notebook. To test the original ViT model, run the ViT.ipynb notebook. (Tintn. Vision Transformer from Scratch. https://github.com/tintn/vision-transformer-from-scratch.)

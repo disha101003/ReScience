@@ -51,7 +51,7 @@ if __name__ == '__main__':
 
     testloader = test_data()
     criterion = nn.CrossEntropyLoss()
- 
+
     model_g, model_f_w, model_f_s = get_models()
     model_g.load_state_dict(torch.load(const.MODEL_DIR / 'model_g'))
     model_f_w.load_state_dict(torch.load(const.MODEL_DIR / 'model_f_w'))
